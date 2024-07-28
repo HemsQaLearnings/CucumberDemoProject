@@ -31,15 +31,13 @@ public class LoginSteps {
 		Thread.sleep(4000);
 	}
 
-	/*
-	 * @When("the user enters valid credentials \\(username:{string} , password:{string});"
-	 * ) public void the_user_enters_valid_credentials_username_password(String usn,
-	 * String psw) throws InterruptedException { // Enter username
-	 * driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys(usn
-	 * ); Thread.sleep(2000); // Enter password
-	 * driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(psw
-	 * ); }
-	 */
+	@When("the user enters valid credentials \\(username:{string} , password:{string});")
+	public void the_user_enters_valid_credentials_username_password(String usn, String psw)
+			throws InterruptedException { // Enter username
+		driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys(usn);
+		Thread.sleep(2000); // Enter password
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(psw);
+	}
 
 	@When("the user enters invalid credentials \\(username:{string} , password:{string});")
 	public void the_user_enters_invalid_credentials_username_password(String usn, String psw)
@@ -55,24 +53,23 @@ public class LoginSteps {
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
 	}
 
-	/*
-	 * @Then("the User should redirected to the HomePage") public void
-	 * the_user_should_redirected_to_the_home_page() throws InterruptedException {
-	 * String currentUrl = driver.getCurrentUrl(); System.out.println(currentUrl);
-	 * Thread.sleep(4000); }
-	 */
+	@Then("the User should redirected to the HomePage")
+	public void the_user_should_redirected_to_the_home_page() throws InterruptedException {
+		String currentUrl = driver.getCurrentUrl();
+		System.out.println(currentUrl);
+		Thread.sleep(4000);
+	}
 
-	/*
-	 * @Then("the user should see a Dashboard") // you can also write @And public
-	 * void the_user_should_see_a_Dashboard() throws InterruptedException {
-	 * 
-	 * String text =
-	 * driver.findElement(By.xpath("//h6[text()='Dashboard']")).getText();
-	 * Thread.sleep(4000); System.out.println(text); boolean verifyHomepage =
-	 * driver.findElement(By.xpath("//h6[text()='Dashboard']")).isDisplayed();
-	 * Assert.assertEquals(verifyHomepage, true); driver.quit(); }
-	 */
+	@Then("the user should see a Dashboard") // you can also write @And 
+	public void the_user_should_see_a_Dashboard() throws InterruptedException {
 
+		String text = driver.findElement(By.xpath("//h6[text()='Dashboard']")).getText();
+		Thread.sleep(4000);
+		System.out.println(text);
+		boolean verifyHomepage = driver.findElement(By.xpath("//h6[text()='Dashboard']")).isDisplayed();
+		Assert.assertEquals(verifyHomepage, true);
+		driver.quit();
+	}
 
 	@Then("the User should redirected to the same Login Page")
 	public void the_user_should_redirected_to_the_same_login_page() throws InterruptedException {
@@ -80,6 +77,7 @@ public class LoginSteps {
 		System.out.println(currentUrl);
 		Thread.sleep(4000);
 	}
+
 	@Then("the User should get error message Invalid credentials")
 	public void the_user_should_get_error_message_invalid_credentials() throws InterruptedException {
 		String error_msg = driver.findElement(By.xpath("//p[@class='oxd-text oxd-text--p oxd-alert-content-text']"))
